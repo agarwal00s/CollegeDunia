@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import collegeImg from './college_02.jpg';
 
-function College() {
+function College(props) {
   return (
     <div
       style={{
@@ -10,7 +10,6 @@ function College() {
         marginTop: "2%",
         borderRadius: "3px",
         padding: "2%",
-        display: 'inline-block',
       }}
     >
       <div
@@ -72,8 +71,8 @@ function College() {
                 marginBottom: "18%",
               }}
             >
-              <h3 style={{ margin: "0px", textAlign: "center" }}>3.9/5</h3>
-              <h5 style={{ margin: "0px", textAlign: "center" }}>Very Good</h5>
+              <h3 style={{ margin: "0px", textAlign: "center" }}>{props.college.rating}/5</h3>
+              <h5 style={{ margin: "0px", textAlign: "center" }}>{props.college.rating_remarks}</h5>
             </div>
           </div>
           <div
@@ -93,44 +92,27 @@ function College() {
                 justifyContent: "space-between",
               }}
             >
-              <div
-                style={{
-                  backgroundColor: "#ffffff",
-                  padding: "8%",
-                  borderRadius: "20px",
-                  display: "flex",
-                  marginRight: "2%",
-                }}
-              >
-                <p
-                  style={{
-                    fontSize: "10px",
-                    margin: "0px",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  Best college 2018
-                </p>
-              </div>
-              <div
-                style={{
-                  backgroundColor: "#ffffff",
-                  padding: "8%",
-                  borderRadius: "20px",
-                  display: "flex",
-                  marginLeft: "2%",
-                }}
-              >
-                <p
-                  style={{
-                    fontSize: "10px",
-                    margin: "0px",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  2Km Away
-                </p>
-              </div>
+                {props.college.tags.map((tag) => {
+                    return <div
+                    style={{
+                      backgroundColor: "#ffffff",
+                      padding: "8%",
+                      borderRadius: "20px",
+                      display: "flex",
+                      marginRight: "2%",
+                    }}
+                  >
+                    <p
+                      style={{
+                        fontSize: "10px",
+                        margin: "0px",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {tag}
+                    </p>
+                  </div>
+                })}
             </div>
             <div style={{ marginRight: "1%" }}>
               <div style={{ padding: "4%", display: "flex" }}>
@@ -143,7 +125,7 @@ function College() {
                     whiteSpace: "nowrap",
                   }}
                 >
-                  #7 in 260 colleges in India
+                  {props.college.ranking}
                 </p>
               </div>
             </div>
@@ -162,7 +144,7 @@ function College() {
         <div style={{ width: "65%" }}>
           <div style={{ display: "flex" }}>
             <p style={{ fontSize: "16px", margin: "0px" }}>
-              Hansraj College Delhi University
+              {props.college.college_name.split('-')[0]}
             </p>
             <div style={{ marginLeft: "2%", fontSize: "16px" }}>
               <span className="fa fa-star" />
@@ -174,11 +156,11 @@ function College() {
           </div>
           <div style={{ display: "flex", marginTop: "1%", marginBottom: "1%" }}>
             <p style={{ fontSize: "12px" }}>
-              Near Vishwavidyalaya Metro Station
+                {props.college.nearest_place[0]}
             </p>
             <p style={{ fontSize: "12px", color: "#bbb" }}>&nbsp;|&nbsp;</p>
             <p style={{ fontSize: "12px", color: "#bbb" }}>
-              2Km away from Bus Stand
+                {props.college.nearest_place[1]}
             </p>
           </div>
           <div style={{ display: "flex", marginTop: "2%", marginBottom: "2%" }}>
