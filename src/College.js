@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.css";
-import collegeImg from './college_02.jpg';
+import collegeImg from "./college_02.jpg";
 
 function College(props) {
   return (
     <div
       style={{
-        width: "50%",
+        width: "43%",
         marginTop: "2%",
         borderRadius: "3px",
         padding: "2%",
@@ -24,35 +24,37 @@ function College(props) {
             borderTopLeftRadius: "5px",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "flex-start",
-              justifyContent: "flex-end",
-            }}
-          >
+          {props.college.promoted && (
             <div
               style={{
-                width: "0px",
-                height: "0px",
-                borderStyle: "solid",
-                borderWidth: "17px 0 17px 20px",
-                borderColor:
-                  "cornflowerblue cornflowerblue cornflowerblue transparent",
-                marginTop: "-2.3%",
-              }}
-            />
-            <div
-              style={{
-                color: "#ffffff",
-                backgroundColor: "cornflowerblue",
-                padding: "1% 5% 1% 5%",
-                marginTop: "-2.3%",
+                display: "flex",
+                alignItems: "flex-start",
+                justifyContent: "flex-end",
               }}
             >
-              PROMOTED
+              <div
+                style={{
+                  width: "0px",
+                  height: "0px",
+                  borderStyle: "solid",
+                  borderWidth: "17px 0 17px 20px",
+                  borderColor:
+                    "cornflowerblue cornflowerblue cornflowerblue transparent",
+                  marginTop: "-2.3%",
+                }}
+              />
+              <div
+                style={{
+                  color: "#ffffff",
+                  backgroundColor: "cornflowerblue",
+                  padding: "1% 5% 1% 5%",
+                  marginTop: "-2.3%",
+                }}
+              >
+                PROMOTED
+              </div>
             </div>
-          </div>
+          )}
           <div
             style={{
               display: "flex",
@@ -71,8 +73,12 @@ function College(props) {
                 marginBottom: "18%",
               }}
             >
-              <h3 style={{ margin: "0px", textAlign: "center" }}>{props.college.rating}/5</h3>
-              <h5 style={{ margin: "0px", textAlign: "center" }}>{props.college.rating_remarks}</h5>
+              <h3 style={{ margin: "0px", textAlign: "center" }}>
+                {props.college.rating}/5
+              </h3>
+              <h5 style={{ margin: "0px", textAlign: "center" }}>
+                {props.college.rating_remarks}
+              </h5>
             </div>
           </div>
           <div
@@ -92,8 +98,9 @@ function College(props) {
                 justifyContent: "space-between",
               }}
             >
-                {props.college.tags.map((tag) => {
-                    return <div
+              {props.college.tags.map((tag) => {
+                return (
+                  <div
                     style={{
                       backgroundColor: "#ffffff",
                       padding: "8%",
@@ -112,7 +119,8 @@ function College(props) {
                       {tag}
                     </p>
                   </div>
-                })}
+                );
+              })}
             </div>
             <div style={{ marginRight: "1%" }}>
               <div style={{ padding: "4%", display: "flex" }}>
@@ -144,7 +152,7 @@ function College(props) {
         <div style={{ width: "65%" }}>
           <div style={{ display: "flex" }}>
             <p style={{ fontSize: "16px", margin: "0px" }}>
-              {props.college.college_name.split('-')[0]}
+              {props.college.college_name.split("-")[0]}
             </p>
             <div style={{ marginLeft: "2%", fontSize: "16px" }}>
               <span className="fa fa-star" />
@@ -155,29 +163,23 @@ function College(props) {
             </div>
           </div>
           <div style={{ display: "flex", marginTop: "1%", marginBottom: "1%" }}>
-            <p style={{ fontSize: "12px" }}>
-                {props.college.nearest_place[0]}
-            </p>
+            <p style={{ fontSize: "12px" }}>{props.college.nearest_place[0]}</p>
             <p style={{ fontSize: "12px", color: "#bbb" }}>&nbsp;|&nbsp;</p>
             <p style={{ fontSize: "12px", color: "#bbb" }}>
-                {props.college.nearest_place[1]}
+              {props.college.nearest_place[1]}
             </p>
           </div>
           <div style={{ display: "flex", marginTop: "2%", marginBottom: "2%" }}>
             <p style={{ fontSize: "12px", color: "#4bb89e" }}>93% Match</p>
             <p style={{ fontSize: "12px", color: "#4bb89e" }}>&nbsp;:&nbsp;</p>
-            <p
-              style={{ fontSize: "12px", color: "#000000", fontWeight: "bold" }}
-            >
-              2.5km&nbsp;
+
+            <p style={{ fontSize: "12px", color: "#bbb" }}>
+              {props.college.famous_nearest_places.split(",")[0]}
             </p>
-            <p style={{ fontSize: "12px", color: "#bbb" }}>from GTB Nagar ,</p>
-            <p
-              style={{ fontSize: "12px", color: "#000000", fontWeight: "bold" }}
-            >
-              &nbsp;7km&nbsp;
+
+            <p style={{ fontSize: "12px", color: "#bbb" }}>
+              {props.college.famous_nearest_places.split(",")[1]}
             </p>
-            <p style={{ fontSize: "12px", color: "#bbb" }}>from Rajiv Chowk</p>
           </div>
           <div
             style={{
@@ -193,17 +195,7 @@ function College(props) {
               borderBottomRightRadius: "15px",
             }}
           >
-            <p style={{ fontSize: "12px" }}>Flat&nbsp;</p>
-            <p style={{ fontSize: "12px" }}>Rs&nbsp;</p>
-            <p style={{ fontSize: "12px", color: "#4bb89e" }}>2000</p>
-            <p style={{ fontSize: "12px" }}>&nbsp;off + upto Rs&nbsp;</p>
-            <p style={{ fontSize: "12px", color: "#4bb89e" }}>500</p>
-            <p style={{ fontSize: "12px" }}>&nbsp;wallet! To avail&nbsp;</p>
-            <div
-              style={{ color: "#1999d2", fontSize: "12px", fontWeight: "bold" }}
-            >
-              LOGIN
-            </div>
+            <p style={{ fontSize: "12px" }}>{props.college.offertext}</p>
           </div>
         </div>
         <div style={{ width: "35%", paddingRight: "3%" }}>
@@ -217,7 +209,7 @@ function College(props) {
             <p
               style={{ fontSize: "12px", display: "flex", paddingRight: "5%" }}
             >
-              <del>₹6.8756</del>
+              <del>₹{props.college.original_fees}</del>
             </p>
             <p
               style={{
@@ -226,7 +218,7 @@ function College(props) {
                 padding: "1% 2% 1% 2%",
               }}
             >
-              20
+              {props.college.discount}
             </p>
           </div>
           <div
@@ -237,7 +229,7 @@ function College(props) {
             }}
           >
             <h2 style={{ color: "#dd1c26", fontWeight: 700, margin: "0px" }}>
-              ₹5,768
+              ₹{props.college.discounted_fees}
             </h2>
           </div>
           <div
@@ -247,7 +239,7 @@ function College(props) {
               alignItems: "center",
             }}
           >
-            <p style={{ fontSize: "12px" }}>Per Semester (3 months)</p>
+            <p style={{ fontSize: "12px" }}>{props.college.fees_cycle}</p>
           </div>
           <div
             style={{
@@ -259,9 +251,14 @@ function College(props) {
               color: "#4bb89e",
             }}
           >
-            <p>Free Cancellation</p>
-            <p>&nbsp;.&nbsp;</p>
-            <p>Free Wi-Fi</p>
+            {props.college.amenties.map((amenities) => {
+              return (
+                <>
+                  <p>{amenities}</p>
+                  <p>&nbsp;</p>
+                </>
+              );
+            })}
           </div>
         </div>
       </div>
